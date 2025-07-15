@@ -64,4 +64,43 @@ public class UserService {
             users.forEach(System.out::println);  //muestra los datos con un bucle
         }
     }
+
+    //servicio de actualizacion de datos
+
+    public void updateUser(){
+        System.out.println("ACTUALIZACION DE USUARIO");
+        listAllUsers();
+
+        System.out.println("Ingrese el ID del usuario a actualizar");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        User user = userDAO.getUserId(id);
+        if (user == null) {
+            System.out.println("Usuario no encontrado");
+            return;
+        }
+
+        System.out.println("Nuevo nombre (" + user.getNames() + "): ");
+        String newName = scanner.nextLine();
+        if (!newName.isEmpty()){
+            user.setNames(newName);
+        }
+
+        System.out.println("Nuevo Apellido (" + user.getLast_names() + "): ");
+        String newLast_Names = scanner.nextLine();
+        if (!newLast_Names.isEmpty()){
+            user.setLast_names(newLast_Names);
+        }
+
+
+
+
+
+        if (userDAO.updateUser(user)){
+
+        }
+
+
+
+    }
 }
