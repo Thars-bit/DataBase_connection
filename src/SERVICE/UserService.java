@@ -92,15 +92,75 @@ public class UserService {
             user.setLast_names(newLast_Names);
         }
 
+        int newDocumentNumber = user.getDocument_number();
+        boolean validDocument = false;
+        while (!validDocument){
+            System.out.print("Nuevo documento (" + user.getDocument_number() + "): ");
+            String input = scanner.nextLine();
 
+            if (input.isEmpty()) {
+                validDocument = true;
+            }else {
+                try{
+                    newDocumentNumber = Integer.parseInt(input);
+                    validDocument = true;
+                }catch (NumberFormatException e){
+                    System.out.println("Error: el documento debe ser un numero entero");
+                }
+            }
+        }
+        user.setDocument_number(newDocumentNumber);
 
+        int newRole =  user.getRole_id();
+        boolean validRole = false;
+        while (!validRole){
+            System.out.print("Nuevo rol (" + user.getRole_id() + "): ");
+            String input = scanner.nextLine();
 
-
-        if (userDAO.updateUser(user)){
-
+            if (input.isEmpty()){
+                validRole = true;
+            }else {
+                try{
+                    newRole = Integer.parseInt(input);
+                    validRole = true;
+                }catch (NumberFormatException e){
+                    System.out.print("Error: El rol debe ser un numero entero");
+                }
+            }
         }
 
+        user.setRole_id(newRole);
+
+        if (userDAO.updateUser(user)){
+            System.out.print("Usuario actualizado existosamente");
+        }else{
+            System.out.print("Error al actualizar el usuario");
+        }
+    }
 
 
+    //Eliminar datos
+
+    public void deleteUser(){
+        System.out.println("Eliminar usuario");
+        listAllUsers();
+
+        System.out.println("Inserese el Id del usuario que quiere eliminar: ");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Esta seguro de que quiere eliminar este usuario? (s/n): ");
+        String confirm = scanner.nextLine();
+
+        if (confirm.equalsIgnoreCase("s")){
+            if (userDAO.deleteUser(id)){
+                System.out.print("Usuario eliminado exitosamente");
+            }else {
+                System.out.print("Error al eliminar el usuario o usuario no enocntrado");
+            }
+        }
+    }
+
+    public void close(){
+        scanner.close();
     }
 }

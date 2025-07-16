@@ -14,7 +14,7 @@ public class UserDAO {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             statement.setString(1, user.getNames());
-            statement.setString(1, user.getLast_names());
+            statement.setString(2, user.getLast_names());
             statement.setInt(3, user.getDocument_number());
             statement.setInt(4, user.getRole_id());
 
@@ -95,7 +95,7 @@ public class UserDAO {
             PreparedStatement statement = connection.prepareStatement(sql)){
 
             statement.setString(1, user.getNames());
-            statement.setString(1, user.getLast_names());
+            statement.setString(2, user.getLast_names());
             statement.setInt(3, user.getDocument_number());
             statement.setInt(4, user.getRole_id());
 
