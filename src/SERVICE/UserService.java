@@ -3,6 +3,7 @@ package SERVICE;
 import DAO.UserDAO;
 import MODEL.User;
 import java.util.*;
+import utils.PasswordUtils;
 
 
 public class UserService {
@@ -49,16 +50,23 @@ public class UserService {
         System.out.println("Ingrese la contraseña: ");
         String password = scanner.nextLine();
 
+
         //Hasher prueba teporal??
 
+        try {
+            String hashedPassword = PasswordUtils.hashPassword(password);
 
-        User newUser = new User(0, names, last_names, document_Number, role_id, password);     //Crea el ibjeto User con sus parametros
+            User newUser = new User(0, names, last_names, document_Number, role_id, hashedPassword);
 
-        if (userDAO.createUser(newUser)){
-            System.out.println("El usuario se creo de manera correcta con el ID: " + newUser.getId());
-        }else {
-            System.out.println("Error al momento de crear el usuario");
+            if (userDAO.createUser(newUser)) {
+                System.out.println("Usuario creado correctamente con ID: " + newUser.getId());
+            } else {
+                System.out.println("Error al crear el usuario");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al hashear la contraseña: " + e.getMessage());
         }
+
     }
 
     public void listAllUsers() {
