@@ -4,6 +4,7 @@ import DAO.UserDAO;
 import MODEL.User;
 import java.util.*;
 
+
 public class UserService {
 
     private UserDAO userDAO;
@@ -45,7 +46,13 @@ public class UserService {
             return;
         }
 
-        User newUser = new User(0, names, last_names, document_Number, role_id);     //Crea el ibjeto User con sus parametros
+        System.out.println("Ingrese la contraseña: ");
+        String password = scanner.nextLine();
+
+        //Hasher prueba teporal??
+
+
+        User newUser = new User(0, names, last_names, document_Number, role_id, password);     //Crea el ibjeto User con sus parametros
 
         if (userDAO.createUser(newUser)){
             System.out.println("El usuario se creo de manera correcta con el ID: " + newUser.getId());
@@ -131,12 +138,21 @@ public class UserService {
 
         user.setRole_id(newRole);
 
+        System.out.println("Nueva contraseña (" + user.getPassword() + "): ");
+        String newPassword = scanner.nextLine();
+        if (!newPassword.isEmpty()){
+            user.setPassword(newPassword);
+        }
+
         if (userDAO.updateUser(user)){
             System.out.print("Usuario actualizado existosamente");
         }else{
             System.out.print("Error al actualizar el usuario");
         }
+
     }
+
+
 
 
     //Eliminar datos

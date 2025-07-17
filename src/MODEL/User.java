@@ -8,15 +8,17 @@ public class User {
     private String last_names;
     private int document_number;
     private int role_id;
+    private String password;
 
 
     //contructor
-    public User(int id, String names, String last_names, int document_number, int role_id) {
+    public User(int id, String names, String last_names, int document_number, int role_id, String password) {
         this.id = id;
         this.names = names;
         this.last_names = last_names;
         this.document_number = document_number;
         this.role_id = role_id;
+        this.password = password;
     }
 
 
@@ -71,9 +73,19 @@ public class User {
         this.role_id = role_id;
     }
 
+    //contraseña
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
-        return "ID: " +id+ ", Nombre: "+names+", Apellidos: "+last_names+", Numero de documento: "+document_number+", Rol: "+role_id;
+        return "ID: " +id+ ", Nombre: "+names+", Apellidos: "+last_names+", Numero de documento: "+document_number+", Rol: "+role_id+", Contraseña: "+password;
     }
 
 

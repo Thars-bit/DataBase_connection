@@ -8,7 +8,7 @@ public class UserDAO {
 
     //creacion de un nuevo usuario
     public boolean createUser(User user){
-        String sql = "INSERT INTO users (names, last_names, document_number, role_id) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO users (names, last_names, document_number, role_id, password) VALUES (?,?,?,?,?)";
 
         try (Connection connection = Connect_DB.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
@@ -17,6 +17,7 @@ public class UserDAO {
             statement.setString(2, user.getLast_names());
             statement.setInt(3, user.getDocument_number());
             statement.setInt(4, user.getRole_id());
+            statement.setString(5, user.getPassword());
 
             int affectedRows = statement.executeUpdate();
 
@@ -39,7 +40,7 @@ public class UserDAO {
     public List<User> getAllUsers() {
 
         List<User> users = new ArrayList<>();
-        String sql = "SELECT id, names, last_names, document_number, role_id FROM users";
+        String sql = "SELECT id, names, last_names, document_number, role_id, password FROM users";
 
         try (Connection connection = Connect_DB.getConnection();   //poll de Connect_DB
             Statement statement = connection.createStatement();   //Es el objeto para consultas estaticas no se usa "PreparedStatement" por que no hay parametros
@@ -51,7 +52,8 @@ public class UserDAO {
                    result.getString("names"),
                    result.getString("last_names"),
                    result.getInt("document_number"),
-                   result.getInt("role_id")
+                   result.getInt("role_id"),
+                    result.getString("password")
                 ));
             }
         }catch (SQLException e) {
@@ -63,7 +65,7 @@ public class UserDAO {
     //Obtener un usuario especifico con el ID
 
     public User getUserId(int id){
-        String sql = "SELECT id, names, last_names, document_number, role_id FROM users WHERE id = ?";
+        String sql = "SELECT id, names, last_names, document_number, role_id, password FROM users WHERE id = ?";
 
         try (Connection connection = Connect_DB.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)) {  // objeto para ejecutar consultas parametrizadas (mas segura que Statement)
@@ -76,7 +78,8 @@ public class UserDAO {
                             result.getString("names"),
                             result.getString("last_names"),
                             result.getInt("document_number"),
-                            result.getInt("role_id")
+                            result.getInt("role_id"),
+                            result.getString("password")
                     );
                 }
             }
@@ -89,7 +92,7 @@ public class UserDAO {
     //Actualiozar usuario
 
     public boolean updateUser(User user){
-        String sql = "UPDATE users SET names = ?, last_names = ?, document_number = ?, role_id = ?";
+        String sql = "UPDATE users SET names = ?, last_names = ?, document_number = ?, role_id = ?, password = ? WHERE id = ?";
 
         try (Connection connection = Connect_DB.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
@@ -98,11 +101,13 @@ public class UserDAO {
             statement.setString(2, user.getLast_names());
             statement.setInt(3, user.getDocument_number());
             statement.setInt(4, user.getRole_id());
+            statement.setString(5, user.getPassword());
+            statement.setInt(6, user.getId());
 
             return statement.executeUpdate() > 0;  // 1: se actualizo una fila 0: no se encontro >1 actualizo varias filas
 
         }catch (SQLException e){
-            System.err.println("Error al obtener el usuario: "+ e.getMessage());
+            System.err.println("Error al actualizar el usuario: "+ e.getMessage());
         }
         return false;
     }
