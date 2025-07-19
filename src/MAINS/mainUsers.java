@@ -1,8 +1,10 @@
+package MAINS;
+
 import SERVICE.UserService;
 import java.util.*;
 
 
-public class main {
+public class mainUsers {
     public static void main(String[] args) {
         UserService userService = new UserService();
         Scanner scanner = new Scanner(System.in);
