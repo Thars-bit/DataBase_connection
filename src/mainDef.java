@@ -22,6 +22,9 @@ public class mainDef {
                 case 2:
                     mainrole.menuRol();
                     break;
+                case 3:
+                    exit = true;
+                    break;
                 default:
                     System.out.println("Opción no válida.");
             }
