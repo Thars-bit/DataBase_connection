@@ -4,7 +4,7 @@ import SERVICE.RoleService;
 import java.util.*;
 
 public class mainRole {
-    public static void main(String[] args) {
+    public void menuRol() {
         RoleService roleService = new RoleService();
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;

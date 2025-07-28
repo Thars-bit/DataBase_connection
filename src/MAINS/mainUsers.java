@@ -5,7 +5,7 @@ import java.util.*;
 
 
 public class mainUsers {
-    public static void main(String[] args) {
+    public void menuUsuario() {
         UserService userService = new UserService();
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
