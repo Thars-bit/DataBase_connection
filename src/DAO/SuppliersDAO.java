@@ -111,7 +111,7 @@ public class SuppliersDAO {
 
     }
 
-    public boolean delete(int id){
+    public boolean deleteSuppliers(int id){
 
         String sql = "DELETE FROM suppliers WHERE id = ?";
         try (Connection connection = Connect_DB.getConnection();
