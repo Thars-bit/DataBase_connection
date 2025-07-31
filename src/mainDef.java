@@ -3,6 +3,7 @@ import MAINS.mainUsers;
 import MAINS.mainRole;
 import MAINS.mainSuppliers;
 import MAINS.mainOperations;
+import MAINS.mainCategories;
 
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ public class mainDef {
         mainUsers mainusers = new mainUsers();
         mainSuppliers mainSuppliers = new mainSuppliers();
         mainOperations mainOperations = new mainOperations();
+        mainCategories mainCategories = new mainCategories();
 
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
@@ -34,6 +36,9 @@ public class mainDef {
                     mainOperations.menuOperacion();
                     break;
                 case 5:
+                    mainCategories.menuCategorias();
+                    break;
+                case 6:
                     exit = true;
                     break;
                 default:
@@ -52,6 +57,7 @@ public class mainDef {
         System.out.println("2. Roles");
         System.out.println("3. Proveedores");
         System.out.println("4. Operaciones");
+        System.out.println("5. Categorias de producto");
 
     }
 }
