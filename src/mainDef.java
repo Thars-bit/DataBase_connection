@@ -2,6 +2,7 @@
 import MAINS.mainUsers;
 import MAINS.mainRole;
 import MAINS.mainSuppliers;
+import MAINS.mainOperations;
 
 import java.util.Scanner;
 
@@ -10,6 +11,8 @@ public class mainDef {
         mainRole mainrole = new mainRole();
         mainUsers mainusers = new mainUsers();
         mainSuppliers mainSuppliers = new mainSuppliers();
+        mainOperations mainOperations = new mainOperations();
+
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 
@@ -28,6 +31,9 @@ public class mainDef {
                     mainSuppliers.menuProveedor();
                     break;
                 case 4:
+                    mainOperations.menuOperacion();
+                    break;
+                case 5:
                     exit = true;
                     break;
                 default:
@@ -44,7 +50,8 @@ public class mainDef {
         System.out.println("\n--- SISTEMA DE GESTIÓN DE DATOS ---");
         System.out.println("1. Usuarios");
         System.out.println("2. Roles");
-        System.out.println("2. Proveedores");
+        System.out.println("3. Proveedores");
+        System.out.println("4. Operaciones");
 
     }
 }
