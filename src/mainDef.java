@@ -5,7 +5,8 @@ import MAINS.mainSuppliers;
 import MAINS.mainOperations;
 import MAINS.mainCategories;
 import MAINS.mainProducts;
-import MAINS.mianAssignments;
+import MAINS.mainAssignments;
+import MAINS.mainStock;
 
 import java.util.Scanner;
 
@@ -17,7 +18,8 @@ public class mainDef {
         mainOperations mainOperations = new mainOperations();
         mainCategories mainCategories = new mainCategories();
         mainProducts mainProducts = new mainProducts();
-        mianAssignments mianAssignments = new mianAssignments();
+        mainAssignments mianAssignments = new mainAssignments();
+        mainStock mainStock = new mainStock();
 
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
@@ -49,6 +51,9 @@ public class mainDef {
                     mianAssignments.menuAsignaciones();
                     break;
                 case 8:
+                    mainStock.menuStock();
+                    break;
+                case 9:
                     exit = true;
                     break;
                 default:
@@ -70,6 +75,7 @@ public class mainDef {
         System.out.println("5. Categorias de producto");
         System.out.println("6. Productos");
         System.out.println("7. Asignaciones");
+        System.out.println("8. Stock");
         System.out.print("Seleccione una opción: ");
 
     }

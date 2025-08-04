@@ -1,12 +1,12 @@
 package MAINS;
 
-import SERVICE.AssignmentsService;
+import SERVICE.StockService;
 import java.util.*;
 
-public class mianAssignments {
+public class mainStock {
 
-    public void menuAsignaciones() {
-        AssignmentsService assignmentService = new AssignmentsService();
+    public void menuStock() {
+        StockService stockService = new StockService();
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 
@@ -16,16 +16,16 @@ public class mianAssignments {
 
             switch (option) {
                 case 1:
-                    assignmentService.createAssignment();
+                    stockService.createStock();
                     break;
                 case 2:
-                    assignmentService.listAllAssignments();
+                    stockService.listAllStock();
                     break;
                 case 3:
-                    assignmentService.updateAssignment();
+                    stockService.updateStock();
                     break;
                 case 4:
-                    assignmentService.deleteAssignment();
+                    stockService.deleteStock();
                     break;
                 case 5:
                     exit = true;
@@ -35,17 +35,17 @@ public class mianAssignments {
             }
         }
 
-        assignmentService.close();
+        stockService.close();
         scanner.close();
-        System.out.println("Gracias por usar el sistema de asignaciones.");
+        System.out.println("Gracias y adiosssss");
     }
 
     private static void printMenu() {
-        System.out.println("\n--- SISTEMA DE GESTIÓN DE ASIGNACIONES ---");
-        System.out.println("1. Crear asignación");
-        System.out.println("2. Listar asignaciones");
-        System.out.println("3. Actualizar asignación");
-        System.out.println("4. Eliminar asignación");
+        System.out.println("\n--- SISTEMA DE GESTIÓN DE STOCK ---");
+        System.out.println("1. Crear entrada de stock");
+        System.out.println("2. Listar stock");
+        System.out.println("3. Actualizar stock");
+        System.out.println("4. Eliminar entrada de stock");
         System.out.println("5. Salir");
         System.out.print("Seleccione una opción: ");
     }
